@@ -188,24 +188,28 @@ human evaluation, domain-specific fine-tuning.
 
 ## 🚀 Deploying live
 
-Quick answer — **Hugging Face Spaces** is the recommended free path (16 GB
-RAM can run M2M100):
+> **2025+:** Hugging Face now requires **PRO** to host Streamlit/Gradio/Docker
+> Spaces on free `cpu-basic` (only static Spaces are free). The best **free**
+> way to run the full interactive app is **Streamlit Community Cloud**.
 
+### Quickest free path — Streamlit Community Cloud (2 min)
+1. This repo is already on GitHub (`Curse395/NEXORA-AI`).
+2. Go to **<https://share.streamlit.io>** → sign in with GitHub → **New app**.
+3. Pick the repo, branch `main`, main file **`app.py`** → **Deploy**.
+4. URL: `https://nexora.streamlit.app` (auto).
+
+> On the free 1 GB tier the whole app works; the live M2M100 Translate button
+> is memory-guarded and shows a friendly notice instead of crashing.
+
+### If you have HF PRO — Spaces (16 GB RAM, live M2M100)
 ```bash
-git init
-git add -A
-git commit -m "NEXORA app"
 git remote add space https://huggingface.co/spaces/<your-username>/nexora
 git push space main
 ```
+Then enable **Persistent Storage** in Space Settings so the ~1.9 GB M2M100
+cache survives restarts.
 
-1. Create a Space at <https://huggingface.co/new-space> (SDK: **Streamlit**,
-   CPU basic tier).
-2. Push the repo as above.
-3. In Space **Settings**, enable **Persistent Storage** so the ~1.9 GB M2M100
-   cache survives restarts.
-
-Full instructions for all options (Spaces, Streamlit Cloud, Docker on
+Full instructions for all options (Streamlit Cloud, Spaces, Docker on
 Render/Railway/VPS, static GitHub Pages) + a cost table:
 → **[docs/deployment_guide.md](docs/deployment_guide.md)**
 

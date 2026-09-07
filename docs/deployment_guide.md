@@ -7,16 +7,23 @@
 
 ## TL;DR
 
+> ⚠️ **Important (2025+):** Hugging Face changed its free tier — **only
+> *static* Spaces are free**. Gradio / Docker (incl. Streamlit) Spaces on the
+> free `cpu-basic` hardware now require a **PRO subscription** ($9/mo). See
+> [Option A](#option-a--hugging-face-spaces-streamlit) for details.
+
 | Option | Cost | Live M2M100 translation? | Effort |
 |---|---|---|---|
-| **A. Hugging Face Spaces (Streamlit)** | Free (CPU basic: 2 vCPU / 16 GB RAM) | ✅ Yes (lazy load, ~2–4 GB RAM while translating) | ⭐ easiest |
-| **B. Streamlit Community Cloud** | Free (1 GB RAM) | ⚠️ Everything works *except* M2M100 may OOM | ⭐ easiest, limited |
+| **B. Streamlit Community Cloud** | Free (1 GB RAM) | ⚠️ App runs fully; Translation tab shows graceful "not enough memory" (M2M100 guarded) | ⭐ easiest, limited |
+| **A. Hugging Face Spaces (Streamlit)** | Free only for static; Streamlit/Docker needs **PRO** | ✅ Yes (lazy load, ~2–4 GB RAM) | ⭐⭐ |
 | **C. Docker on VPS / Render / Railway** | ~$0–7/mo | ✅ Yes | ⭐⭐ |
 | **D. GitHub Pages / static preview** | Free | ❌ No server — but gives a public URL that links to the repo + screenshots | ⭐⭐⭐ (not a real app) |
 
-**Recommendation:** **A** if you want the full live translation experience for
-free. **C** if you want an always-on, controllable deployment. **B** if you
-don't mind the translation tab being limited.
+**Recommendation:** **B** (Streamlit Community Cloud) is the best **free**
+option that runs the full interactive app — everything works, and we added a
+memory guard so the Translation tab fails *gracefully* instead of OOM-ing on
+the 1 GB free tier. **A** (HF Spaces) gives you live M2M100 translation but
+now costs **PRO**. **C** if you want an always-on, controllable deployment.
 
 ---
 
@@ -36,7 +43,58 @@ cost at the moment of translation.
 
 ---
 
-## Option A — Hugging Face Spaces (recommended)
+## Option B — Streamlit Community Cloud ★ (best free)
+
+Free, connects straight to your GitHub repo, runs the full interactive app.
+The only limitation: the live M2M100 translation engine needs ~2–4 GB RAM,
+and the free plan gives 1 GB — so we added a **memory guard** that detects
+this and shows a friendly message instead of crashing.
+
+1. Push the repo to **GitHub** (already done for this project):
+   ```bash
+   git init
+   git add -A
+   git commit -m "NEXORA app"
+   git branch -M main
+   git remote add origin https://github.com/<you>/nexora.git
+   git push -u origin main
+   ```
+2. Go to **<https://share.streamlit.io>**, sign in with GitHub:
+   - **New app** → pick the `owner/nexora` repo
+   - Branch: `main` · Main file: `app.py`
+3. Streamlit auto-deploys and gives a URL like `https://nexora.streamlit.app`.
+
+> ✅ Everything works: Home, Dataset, Classical ML, Seq2Seq, Attention
+> explorer, About.
+> ⚠️ Pressing **Translate** on the free tier will raise a friendly
+> "not enough memory" notice (the app detects < 1.8 GB free RAM and refuses
+> to load the 1.9 GB model). Upgrade the plan or use Option A/C for live
+> translation.
+
+---
+
+## Option A — Hugging Face Spaces (Streamlit)
+
+> **2025+ reality check:** Hugging Face now requires **PRO** to host Gradio
+> or **Docker** Spaces (Streamlit Spaces are Docker-backed) on the free
+> `cpu-basic` hardware. Creating one from the CLI returns `402 Payment
+> Required` with: *"Static Spaces are free for everyone, but hosting Gradio
+> and Docker Spaces on free cpu-basic requires a PRO subscription."*
+> Only **static** Spaces are free — which can't run Python/Streamlit.
+
+With PRO, the process is identical to before (and worth it for live M2M100):
+1. **Create a Space** — <https://huggingface.co/new-space>
+   - Name: `nexora-mt` · SDK: **Streamlit** · Hardware: CPU basic (16 GB RAM)
+2. **Push the code**
+   ```bash
+   git remote add space https://huggingface.co/spaces/<username>/nexora-mt
+   git push space main
+   ```
+3. Enable **Persistent Storage** on the Space (Settings) so the ~1.9 GB
+   M2M100 cache survives restarts.
+
+> The `README_hf.md` in this repo is a ready-made Space card (title, emoji,
+> colors). Rename it to `README.md` in the Space and re-push for the card.
 
 Hugging Face gives every Space a public URL and 16 GB RAM on the free CPU
 "basic" tier — comfortably enough for M2M100.
@@ -67,30 +125,6 @@ Hugging Face gives every Space a public URL and 16 GB RAM on the free CPU
 > The `README_hf.md` in this repo is a ready-made Space card (title, emoji,
 > colors). If your Space card looks plain, copy its frontmatter into
 > `README.md` and re-push.
-
----
-
-## Option B — Streamlit Community Cloud
-
-1. Push the repo to **GitHub**:
-   ```bash
-   git init
-   git add -A
-   git commit -m "NEXORA app"
-   git branch -M main
-   git remote add origin https://github.com/<you>/nexora.git
-   git push -u origin main
-   ```
-2. Go to <https://share.streamlit.io>, sign in with GitHub, **New app**,
-   point at `owner/nexora`, branch `main`, file `app.py`.
-3. Streamlit auto-deploys and gives a URL like
-   `https://nexora.streamlit.app`.
-
-> ⚠️ **RAM reality check:** free Streamlit Cloud offers **1 GB RAM**. The
-> static pages (Home, Dataset, Classical ML, Seq2Seq, About, Attention
-> samples) will run fine. Pressing **Translate** will try to load M2M100
-> (~2–4 GB) and will likely be killed by the memory limit.
-> **Workaround:** a paid plan, or **Option A/C** instead.
 
 ---
 
@@ -183,12 +217,14 @@ This is useful as a *submission artifact link*, not a live app replacement.
 
 | Path | Monthly cost | M2M100 works | URL example |
 |---|---|---|---|
-| HF Spaces CPU basic | $0 | ✅ | `hf.co/spaces/you/nexora` |
-| Streamlit Cloud free | $0 | ⚠️ limited by 1 GB | `nexora.streamlit.app` |
+| Streamlit Cloud free | $0 | ⚠️ limited by 1 GB (guarded, friendly notice) | `nexora.streamlit.app` |
+| HF Spaces CPU basic | $0 static / **PRO** for Streamlit+Gradio+Docker | ✅ (PRO) | `hf.co/spaces/you/nexora` |
 | Render 2 GB instance | ~$5 | ✅ | `nexora.onrender.com` |
 | Railway + volume | ~$5 | ✅ | `nexora.up.railway.app` |
 | VPS (2 GB droplet) | ~$6 | ✅ | your IP/domain |
 | GitHub Pages | $0 | ❌ static only | `you.github.io/nexora` |
 
-**Bottom line:** start with **Hugging Face Spaces + Persistent Storage** — it's
-free, 16 GB RAM, and purpose-built for exactly this stack.
+**Bottom line:** start with **Streamlit Community Cloud** — free, zero setup,
+and the whole app works live (the Translation tab shows a graceful notice on
+the 1 GB free tier). If you want the real M2M100 Translate button, use **HF
+Spaces with PRO** (16 GB RAM) or a **~$5 VPS/container**.
