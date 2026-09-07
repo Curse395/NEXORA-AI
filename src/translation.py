@@ -55,6 +55,12 @@ class TranslationResult:
 class M2MTranslator:
     """Lazy-loading wrapper around the M2M100 model + tokenizer."""
 
+    # M2M100_418M needs roughly 2-4 GB of RAM once loaded (plus the ~1.9 GB
+    # download). Streamlit Community Cloud free instances only guarantee 1 GB,
+    # so we refuse to load there and fail FAST with a friendly message instead
+    # of OOM-ing the whole app.
+    MIN_RAM_MB = 1800
+
     def __init__(self, use_cache: bool = True):
         self.model = None
         self.tokenizer = None
@@ -63,8 +69,22 @@ class M2MTranslator:
     def _ensure_loaded(self):
         if self.model is not None:
             return
+        import psutil
         import torch
         from transformers import M2M100ForConditionalGeneration, M2M100Tokenizer
+
+        # ---- memory guard --------------------------------------------------
+        try:
+            avail_mb = psutil.virtual_memory().available / (1024**2)
+        except Exception:
+            avail_mb = float("inf")
+        if avail_mb < self.MIN_RAM_MB:
+            raise MemoryError(
+                f"Not enough free memory to load the M2M100 model "
+                f"({avail_mb:.0f} MB free, need ≥ {self.MIN_RAM_MB} MB). "
+                f"The Live Translation engine is disabled on this plan — "
+                f"everything else in NEXORA works fine."
+            )
 
         kwargs = {}
         if self._dir is not None:
