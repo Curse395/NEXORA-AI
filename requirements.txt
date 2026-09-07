@@ -1,36 +1,35 @@
 # ============================================================
 # NEXORA — Machine Translation with Seq2Seq + Attention
-# Python 3.10+  ·  Streamlit Community Cloud compatible
+# Python 3.10+ (works on Streamlit Cloud's Python 3.14 too)
 # Install: pip install -r requirements.txt
 # ============================================================
 
-# Dashboard
-streamlit==1.41.1
+# Dashboard (pure-Python — let pip resolve)
+streamlit>=1.41
 
-# Core data + numerical
-numpy==1.26.4
-pandas==2.2.3
+# Core data + numerical (latest has cp314 wheels)
+numpy==2.2.6
+pandas==2.3.3
 
 # Plotting
-matplotlib==3.9.2
-wordcloud==1.9.3
+matplotlib==3.10.9
+wordcloud==1.9.6
 
 # Classical ML + NLP feature engineering
-scikit-learn==1.5.2
-nltk==3.9.1
+scikit-learn==1.7.2
+nltk>=3.9
 
 # Production translation engine (M2M100 + tokenizer)
 # (facebook/m2m100_418M is downloaded lazily only when you press Translate)
-transformers==4.46.3
-sentencepiece==0.2.0
-sacremoses==0.1.1
+transformers>=4.46
+sentencepiece==0.2.2
+sacremoses>=0.1.1
 
 # Experimental Seq2Seq + Attention deep learning (CPU build saves ~2 GB)
-torch==2.5.1
---extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.12.0
 
 # Dataset streaming (only the Samanantar metadata is streamed — tiny)
-datasets==3.2.0
+datasets>=3.2
 
 # Memory guard for Live Translation engine (psutil reads free RAM)
-psutil==6.1.1
+psutil==7.2.2
