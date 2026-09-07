@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Data & models (regenerable, heavy — keep OUT of git)
+data/raw/*
+models/m2m100/
+# 547 MB feature matrices — only needed to retrain
+*.npz
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Lightweight deployment-critical artifacts ARE committed so the app
+# runs out-of-the-box on Streamlit Cloud / HF Spaces:
+#   data/processed/*.parquet + dataset_stats.json
+#   outputs/plots/*, outputs/metrics/*, outputs/attention/*
+#   models/seq2seq/* (pt is 21 MB, npy is tiny)
+
+# Outputs (regenerable)
+outputs/screenshots/
+!outputs/**/.gitkeep
+
+# Logs & misc
+logs_*.txt
+.streamlit/secrets.toml
+
+# Notebooks
+.ipynb_checkpoints/

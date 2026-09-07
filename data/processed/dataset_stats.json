@@ -1,0 +1,26 @@
+{
+  "raw_rows": 360000,
+  "missing_raw": {
+    "text": 0
+  },
+  "duplicates_raw": {
+    "text": 439
+  },
+  "lid_rows": 359505,
+  "pair_hi_rows": 60000,
+  "pair_mr_rows": 60000,
+  "splits": {
+    "train": 287604,
+    "valid": 35950,
+    "test": 35951
+  },
+  "n_features": 6,
+  "languages": {
+    "hi": "Hindi",
+    "mr": "Marathi",
+    "bn": "Bengali",
+    "gu": "Gujarati",
+    "ta": "Tamil",
+    "te": "Telugu"
+  }
+}

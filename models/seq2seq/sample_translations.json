@@ -1,0 +1,52 @@
+[
+  {
+    "source": "Realme X is the first Realme phone to offer a pop-up selfie camera.",
+    "reference": "Realme X कंपनी का पहला स्मार्टफोन है, जिसमें पॉप-अप सेल्फी कैमरा दिया गया है.",
+    "prediction": "यह फोन में एक <unk> <unk> <unk> <unk> <unk> <unk> <unk> <unk> की है।"
+  },
+  {
+    "source": "First, it should conform to the definition of trademark under the act and it should satisfy the 3 conditions provided in the definition.",
+    "reference": "सबसे पहले, यह ट्रेडमार्क अधिनियम के तहत परिभाषा के अनुरूप होना चाहिए और इसे परिभाषा में प्रदान की गई 3 शर्तों को पूरा करना चाहिए।",
+    "prediction": "<unk> , <unk> <unk> के लिए <unk> और <unk> के लिए <unk> के लिए <unk> के लिए <unk>"
+  },
+  {
+    "source": "There are 65 common centres between both the series and the linking factor of common centers ranges from 2.38 of Doom-Dooma Tinsukia to 3.60 of Nagpur.",
+    "reference": "दोनों श्रृंखलाओं के बीच 65 कॉमन सेंटर हैं और कॉमन सेंटर्स के लिंकिंग फैक्टर की संख्या 2.38 से डूम-डूमा तिनसुकिया से नागपुर के लिये 3.60 तक है।",
+    "prediction": "<unk> के लिए <unk> और <unk> के लिए <unk> के लिए <unk> के लिए <unk> के लिए <unk> के लिए"
+  },
+  {
+    "source": "Khanna was also an active politician, and a Member of Parliament from Gurdaspur, Punjab.",
+    "reference": "विनोद सक्रिय राजनीति में भी रहे और पंजाब के गुरदासपुर से वर्तमान लोकसभा सदस्य थे.",
+    "prediction": "इस फिल्म में <unk> के साथ , <unk> और <unk> <unk> , <unk> , <unk> , <unk>"
+  },
+  {
+    "source": "As a programmer, you need to understand the memory hierarchy.",
+    "reference": "प्रोग्रामर होने के नाते आपको स्मृति पदानुक्रम की समझ होनी चाहिए।",
+    "prediction": "<unk> <unk> <unk> <unk> <unk> <unk> <unk> <unk> <unk>"
+  },
+  {
+    "source": "The loss of India 's good qualities is basically its own fault.",
+    "reference": "भारत के अच्छे गुणों की हानि मूलतः इसका अपना ही दोष है।",
+    "prediction": "भारत के लिए भारत के लिए <unk> <unk> <unk> है।"
+  },
+  {
+    "source": "How is trusting Jehovahs promise related to our love for him?",
+    "reference": "यहोवा के लिए अपना प्यार दिखाने का एक और तरीका क्या है?",
+    "prediction": "क्या आप <unk> के लिए <unk> है ?"
+  },
+  {
+    "source": "However, the Avian Influenza has not affected the poultry farm in the state.",
+    "reference": "लेकिन राज्य के मुर्गी फार्मों में एविएन फ्लू का असर नहीं दिखा है।",
+    "prediction": "हालांकि , <unk> <unk> में <unk> <unk> <unk> <unk> <unk> <unk> <unk> <unk> <unk> <unk>"
+  },
+  {
+    "source": "They quoted Junker as saying that in the Euro group and among EU finance ministers, everyone is aware that Strauss-Kahn will probably be the last European to become the IMF director in the foreseeable future",
+    "reference": "उन्होंने कहा कि 2007 में स्ट्रास कान का चयन किए जाने के समय यूरो समूह के अध्यक्ष ज्यां क्लाड जंकर ने घोषणा की थी कि अगला प्रबंध निदेशक निश्चित तौर पर एक यूरोपीय नहीं होगा और यूरो समूह एवं यूरोपीय संघ के वित्त मंत्रियों में हर कोई इस बात से वाकिफ था कि स्ट्रास कान संभवत: निकट भविष्य में आईएमएफ के प्रमुख बनने वाले अंतिम यूरोपीय हैं।",
+    "prediction": "<unk> <unk> ने कहा कि <unk> में <unk> और <unk> <unk> के लिए <unk> और <unk> <unk>"
+  },
+  {
+    "source": "And secondly, it 's trying to remind you",
+    "reference": "और दूसरा, हमे ये बताने के लिये कि",
+    "prediction": "और <unk> के लिए <unk> <unk> <unk>"
+  }
+]

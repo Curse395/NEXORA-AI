@@ -1,0 +1,39 @@
+{
+  "epochs": 3,
+  "batch_size": 64,
+  "max_len": 20,
+  "embed_dim": 128,
+  "hidden_dim": 128,
+  "lr": 0.001,
+  "vocab_src_size": 10004,
+  "vocab_tgt_size": 10004,
+  "samples_trained": 25500,
+  "samples_validated": 3000,
+  "history": {
+    "epoch": [
+      1,
+      2,
+      3
+    ],
+    "train_loss": [
+      6.203241841834888,
+      5.352001111310227,
+      4.903165283059716
+    ],
+    "valid_loss": [
+      5.64786511279167,
+      5.2129181395185755,
+      4.947833325000519
+    ]
+  },
+  "bleu": {
+    "bleu": 0.0036388430453914,
+    "bleu1": 0.08887045807327411,
+    "bleu2": 0.03288578175369358,
+    "bleu3": 0.01007462790426264,
+    "n_predictions": 200
+  },
+  "device": "cpu",
+  "architecture": "BiLSTM Encoder + GRU Decoder + Bahdanau Additive Attention",
+  "note": "Experimental model for academic demonstration. Production translation uses facebook/m2m100_418M."
+}

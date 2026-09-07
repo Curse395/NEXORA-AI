@@ -1,0 +1,31 @@
+# ============================================================
+# NEXORA — Machine Translation with Seq2Seq + Attention
+# Python 3.10+
+# Install: pip install -r requirements.txt
+# ============================================================
+
+# Core data + numerical
+numpy
+pandas
+
+# Plotting
+matplotlib
+wordcloud
+
+# Classical ML + NLP feature engineering
+scikit-learn
+nltk
+
+# Production translation engine (M2M100 + tokenizer)
+transformers
+sentencepiece
+sacremoses
+
+# Experimental Seq2Seq + Attention deep learning
+torch
+
+# Dataset streaming
+datasets
+
+# Dashboard
+streamlit
